@@ -22,6 +22,26 @@ wineryList.push({
   }
 });
 
+wineryList.push({
+  name: 'Roth',
+  description: 'Alexander Valley Winery',
+  url: 'https://www.rothestatewines.com',
+  fullAddress: '1234 Main Ave Windsor, CA',
+  contactPhone: '415-987-0000',
+  contactEmail: 'roth@rothestatewines.com',
+  hours: '10AM - 5PM 7 Days a week',
+  tastingByAppt: false,
+  varietals: ['Pinot Noir', 'Rose', 'Chardonnay', 'Cabernet Sauvignon'],
+  wineClub: true,
+  twitter: '@rothestate',
+  facebook: 'facebook.com/rothwines',
+  wineRegion: 'Alexander Valley',
+  maps: {
+    lat: 37.7594696,
+    long: -122.4248613
+  }
+});
+
 // wineryList.forEach(function(winery){
 //
 // });

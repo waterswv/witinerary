@@ -39,6 +39,9 @@ app.get('/api', controllers.api.index);
 
 // Winery Controller Routes
 app.get('/api/winery', controllers.winery.index);
+app.post('/api/winery', controllers.winery.create);
+app.get('/api/winery/:winery_id', controllers.winery.show);
+app.delete('/api/winery/:id', controllers.winery.destroy);
 
 /**********
  * SERVER *
