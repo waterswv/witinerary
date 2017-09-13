@@ -13,6 +13,8 @@ let express = require('express'),
 // generate a new express app and call it 'app'
 let app = express();
 
+let db = require('./models');
+
 // serve static files from public folder
 app.use(express.static(__dirname + 'public'));
 
@@ -30,12 +32,21 @@ app.get('/', function(req, res){
 
 app.get('/api', function(req, res) {
   res.json({
-    description: "This API provides data to Witinerary"
-    gitHub: "https://github.com/waterswv/witinerary"
+    description: "This API provides data to Witinerary",
+    gitHub: "https://github.com/waterswv/witinerary",
     endPoints: "Coming Soon"
   });
 });
 
+//basic get wineries route
+app.get('/winery', function(req, res){
+  db.Winery.find({}, function(err, wineries) {
+    if (err){
+      console.log('Error', err);
+    }
+    res.json(wineries);
+  });
+});
 
 /**********
  * SERVER *
