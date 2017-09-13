@@ -38,14 +38,7 @@ app.get('/', function(req, res){
 app.get('/api', controllers.api.index);
 
 // Winery Controller Routes
-app.get('/api/winery', function(req, res){
-  db.Winery.find({}, function(err, wineries) {
-    if (err){
-      console.log('Error', err);
-    }
-    res.json(wineries);
-  });
-});
+app.get('/api/winery', controllers.winery.index);
 
 /**********
  * SERVER *
