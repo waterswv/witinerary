@@ -1,0 +1,23 @@
+{
+  "name": "witinerary",
+  "version": "1.0.0",
+  "description": "wines on your time",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waterswv/witinerary.git"
+  },
+  "author": "waterswv",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/waterswv/witinerary/issues"
+  },
+  "homepage": "https://github.com/waterswv/witinerary#readme",
+  "dependencies": {
+    "express": "^4.15.4",
+    "mongoose": "^4.11.11"
+  }
+}
