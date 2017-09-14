@@ -43,6 +43,11 @@ app.post('/api/winery', controllers.winery.create);
 app.get('/api/winery/:winery_id', controllers.winery.show);
 app.delete('/api/winery/:id', controllers.winery.destroy);
 
+// WineMap Controller Routes
+app.get('/api/map', controllers.wineMap.index);
+app.post('/api/map', controllers.wineMap.create);
+app.get('/api/map/:map_id', controllers.wineMap.show);
+app.delete('/api/map/:id', controllers.wineMap.destroy);
 /**********
  * SERVER *
  **********/

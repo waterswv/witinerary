@@ -5,8 +5,8 @@ let Winery = require('./winery')
 
 let WineMapSchema = new Schema({
   title: String,
-  createdDate: Date,
-  scheduleDate: Date,
+  createdDate: String,
+  scheduleDate: String,
   startTime: String,
   endTime: String,
   mapURL: String,
