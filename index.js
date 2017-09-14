@@ -20,7 +20,7 @@ let db = require('./models');
 let controllers = require('./controllers');
 
 // serve static files from public folder
-app.use(express.static(__dirname + 'public'));
+app.use(express.static(__dirname + '/public'));
 
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
