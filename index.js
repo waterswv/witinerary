@@ -48,6 +48,10 @@ app.get('/api/map', controllers.wineMap.index);
 app.post('/api/map', controllers.wineMap.create);
 app.get('/api/map/:map_id', controllers.wineMap.show);
 app.delete('/api/map/:id', controllers.wineMap.destroy);
+app.put('/api/map/:map_id/winery/:winery_id', controllers.wineMap.update)
+app.delete('/api/map/:map_id/winery/:winery_id', controllers.wineMap.destroyWinery)
+
+
 /**********
  * SERVER *
  **********/
