@@ -34,6 +34,7 @@ app.get('/', function(req, res){
   console.log(__dirname);
 });
 
+
 // API Controller Routes
 app.get('/api', controllers.api.index);
 

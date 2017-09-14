@@ -9,4 +9,19 @@ $(document).ready(function() {
       close: 'Ok',
       closeOnSelect: false // Close upon selecting a date,
     });
+
+    $.ajax({
+      method: 'GET',
+      url: '/api/winery',
+      success: wineryIndexSuccess,
+    });
+
+
+    function wineryIndexSuccess(wineries) {
+      console.log(wineries);
+      wineries.forEach(function(winery) {
+        console.log(winery);
+        renderWineryCard(winery);
+      });
+    }
 });

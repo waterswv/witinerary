@@ -7,3 +7,17 @@ ul.dropdown-content.select-dropdown li:not(.disabled) span {
 nav {
   color: black;
 }
+.col.m4.l4.card{
+  height: 225px;
+}
+.col.m8.l8.card{
+  height: 225px;
+}
+
+body{
+  background-image: url('images/panorama.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 50%;
+}
