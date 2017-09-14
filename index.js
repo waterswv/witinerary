@@ -13,7 +13,11 @@ let express = require('express'),
 // generate a new express app and call it 'app'
 let app = express();
 
+// setup db instance to leverage models
 let db = require('./models');
+
+// setup instance of controllers to to leverage the controller functions
+let controllers = require('./controllers');
 
 // serve static files from public folder
 app.use(express.static(__dirname + 'public'));
@@ -21,7 +25,7 @@ app.use(express.static(__dirname + 'public'));
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//routes
+//root route setup
 
 app.get('/', function(req, res){
   res.sendFile('views/index.html', {
@@ -30,23 +34,23 @@ app.get('/', function(req, res){
   console.log(__dirname);
 });
 
-app.get('/api', function(req, res) {
-  res.json({
-    description: "This API provides data to Witinerary",
-    gitHub: "https://github.com/waterswv/witinerary",
-    endPoints: "Coming Soon"
-  });
-});
+// API Controller Routes
+app.get('/api', controllers.api.index);
 
-//basic get wineries route
-app.get('/winery', function(req, res){
-  db.Winery.find({}, function(err, wineries) {
-    if (err){
-      console.log('Error', err);
-    }
-    res.json(wineries);
-  });
-});
+// Winery Controller Routes
+app.get('/api/winery', controllers.winery.index);
+app.post('/api/winery', controllers.winery.create);
+app.get('/api/winery/:winery_id', controllers.winery.show);
+app.delete('/api/winery/:id', controllers.winery.destroy);
+
+// WineMap Controller Routes
+app.get('/api/map', controllers.wineMap.index);
+app.post('/api/map', controllers.wineMap.create);
+app.get('/api/map/:map_id', controllers.wineMap.show);
+app.delete('/api/map/:id', controllers.wineMap.destroy);
+app.put('/api/map/:map_id/winery/:winery_id', controllers.wineMap.update)
+app.delete('/api/map/:map_id/winery/:winery_id', controllers.wineMap.destroyWinery)
+
 
 /**********
  * SERVER *
