@@ -1,0 +1,9 @@
+
+
+ul.dropdown-content.select-dropdown li:not(.disabled) span {
+    color: #BB8AAC; /* no need for !important :) */
+}
+
+nav {
+  color: black;
+}
