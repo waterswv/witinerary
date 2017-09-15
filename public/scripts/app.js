@@ -1,5 +1,7 @@
 $(document).ready(function() {
     console.log('Javascript Sanity Check');
+    renderNav();
+    renderFooter();
     $('select').material_select();
     $('.datepicker').pickadate({
       selectMonths: true, // Creates a dropdown to control month
