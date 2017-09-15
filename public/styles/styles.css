@@ -8,14 +8,14 @@ nav {
   color: black;
 }
 .col.m4.l4.card{
-  height: 225px;
+margin-top: 50px
 }
-.col.m8.l8.card{
-  height: 225px;
+.col.m8.l8{
+  margin-top: 75px
 }
 
 .hero-image{
-  background-image: url('images/panorama.jpg');
+  background-image: url('images/landscape-nature-grass-marsh-light-sun-535861-pxhere.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;

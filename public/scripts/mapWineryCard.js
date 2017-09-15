@@ -1,12 +1,13 @@
 
+// mapWineryCard Render Function.
 function mapWineryCard(winery) {
 
-  let mapWineryCardHTML = `
-      <div class="col s12 m3" data-winery-id="${winery._id}">
+  let mapWineryCardHTML = (`
+      <div class="col s12 m6" data-winery-id="${winery._id}">
         <div class="card">
           <div class="card-content">
             <div class="chip">
-              <img src="${winery.url}" alt="Contact Person">
+              <img src="https://pbs.twimg.com/profile_images/413706032871788544/IVbxnu7V_400x400.jpeg" alt="Contact Person">
               ${winery.name}
             </div>
             <p>${winery.description}</p>
@@ -17,5 +18,6 @@ function mapWineryCard(winery) {
         </div>
       </div> <!-- end of col class for card -->
   `
-
+);
+$('.map-outline').prepend(mapWineryCardHTML);
 }
