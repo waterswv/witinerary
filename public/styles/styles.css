@@ -14,10 +14,32 @@ nav {
   height: 225px;
 }
 
-body{
+.hero-image{
   background-image: url('images/panorama.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
   height: 50%;
+}
+div.chip{
+  border-left: 50px;
+}
+
+.add-winery-card{
+  text-align: center;
+}
+#add-winery{
+  margin: auto;
+}
+
+.outline{
+  border: green 1px dashed;
+}
+
+.home-hero{
+  color: white;
+  /*font: bold;*/
+  font-size: 30px;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
 }
