@@ -17,8 +17,8 @@ wineryList.push({
   facebook: 'facebook.com/untiwines',
   wineRegion: 'Dry Creek Valley',
   maps: {
-    lat: 37.7594696,
-    long: -122.4248613
+    lat: 38.6640092,
+    long: -122.9342897
   }
 });
 
@@ -37,8 +37,8 @@ wineryList.push({
   facebook: 'facebook.com/rothwines',
   wineRegion: 'Alexander Valley',
   maps: {
-    lat: 37.7594696,
-    long: -122.4248613
+    lat: 38.5706633,
+    long: -122.7795547
   }
 });
 

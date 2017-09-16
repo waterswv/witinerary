@@ -18,15 +18,15 @@ $(document).ready(function() {
       success: wineryIndexSuccess,
     });
 
-    $.ajax({
-      method: 'GET',
-      url: '/api/map',
-      success: wineMapIndexSuccess
-    })
 
 
 });
 
+$.ajax({
+  method: 'GET',
+  url: '/api/map',
+  success: wineMapIndexSuccess
+})
 
 function wineryIndexSuccess(wineries) {
 
@@ -38,33 +38,38 @@ function wineryIndexSuccess(wineries) {
 
 function wineMapIndexSuccess(wineMapData) {
 
-  // Render winery data to page
-  wineMapData.data[0].wineries.forEach(function(winery){
-    mapWineryCard(winery);
-    let wineryDiv = `[data-winery-id=${winery._id}]`;
-    // For each pool, render the events for that pool
-    console.log(wineryDiv);
+  renderMap(wineMapData)
+    // Render winery data to page
+    wineMapData.data[0].wineries.forEach(function(winery){
+      mapWineryCard(winery);
+      let wineryDiv = `[data-winery-id=${winery._id}]`;
+      // For each pool, render the events for that pool
+      console.log(wineryDiv);
 
-  });
+    });
 
-  console.log('(3)the lat is ', wineMapData.data[0].wineries[0].maps.lat);
-  console.log('(3)the long is ', wineMapData.data[0].wineries[0].maps.long);
+}
+
+function renderMap(wineMapData,) {
 
   let winery = wineMapData.data[0].wineries[0];
   let theLocation = {
     lat: wineMapData.data[0].wineries[0].maps.lat,
     lng: wineMapData.data[0].wineries[0].maps.long
-    };
-    console.log(document.getElementById('wine-map'));
+  };
+  console.log(document.getElementById('wine-map'));
 
-    let map = new google.maps.Map(document.getElementById('wine-map'), {
-      center: {lat: 37.7594696 ,lng: -122.4248613},
-      zoom: 8
-    });
+  let map = new google.maps.Map(document.getElementById('wine-map'), {
+    center: theLocation,
+    zoom: 10
+  });
+  wineMapData.data[0].wineries.forEach(function(winery){
+    // Add all wineries in WineMap to Map
     let marker = new google.maps.Marker({
-      position: {lat: 37.7594696 ,lng: -122.4248613},
+      position: {lat: winery.maps.lat ,lng: winery.maps.long},
       map: map
     });
-}
+});
 
+}
 // AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg
