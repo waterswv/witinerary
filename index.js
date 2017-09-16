@@ -20,7 +20,7 @@ let db = require('./models');
 let controllers = require('./controllers');
 
 // serve static files from public folder
-app.use(express.static(__dirname + 'public'));
+app.use(express.static(__dirname + '/public'));
 
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -33,6 +33,14 @@ app.get('/', function(req, res){
   });
   console.log(__dirname);
 });
+
+app.get('/new-map', function(req, res){
+  res.sendFile('views/new-map.html', {
+    root: __dirname
+  });
+  console.log(__dirname);
+});
+
 
 // API Controller Routes
 app.get('/api', controllers.api.index);

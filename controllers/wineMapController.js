@@ -1,6 +1,17 @@
 // Includes all CRUD Functions for WineMap Schema
 
 const db = require('../models');
+// var GoogleMapsAPI = require('googlemaps');
+//
+// // importing google maps:
+// var publicConfig = {
+//   key: 'AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg',
+//   stagger_time:       1000, // for elevationPath
+//   encode_polylines:   false,
+//   secure:             true, // use https
+//   //proxy:              'http://127.0.0.1:9999' // optional, set a proxy for HTTP requests
+// };
+// var gmAPI = new GoogleMapsAPI(publicConfig);
 
 function index(req, res) {
   db.WineMap.find({}, function(err, wineMaps) {
@@ -17,6 +28,7 @@ function create(req, res) {
       console.log('Error Creating WineMap', err);
     }
     res.json(wineMap);
+
   });
 }
 
@@ -72,6 +84,26 @@ function destroyWinery(req, res) {
     res.json(wineMap);
   });
 }
+
+// // Non Route Functions:
+// // renderMapLatLng creates lat long data from address & updates coordinates.
+// function renderMapLatLng (pools) {
+//   pools.forEach(function (pool) {
+//       // geocode API
+//       var geocodeParams = {
+//         "address": pool.address,
+//       };
+//       gmAPI.geocode(geocodeParams, function(err, result){
+//         console.log("the result is ", result);
+//         pool.maps.lat = result.results[0].geometry.location.lat;
+//         pool.maps.long = result.results[0].geometry.location.lng;
+//         pool.save();
+//         console.log('the pool LatLng is ', pool.maps);
+//       });
+//   });
+// }
+
+
 
 module.exports = {
   index: index,

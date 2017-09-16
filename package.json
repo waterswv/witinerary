@@ -19,6 +19,7 @@
   "dependencies": {
     "body-parser": "^1.18.1",
     "express": "^4.15.4",
+    "googlemaps": "^1.12.0",
     "mongoose": "^4.11.11"
   }
 }
