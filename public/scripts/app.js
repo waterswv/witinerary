@@ -29,9 +29,9 @@ $(document).ready(function() {
 
 
 function wineryIndexSuccess(wineries) {
-  console.log(wineries);
+
   wineries.forEach(function(winery) {
-    console.log(winery);
+
     renderWineryCard(winery);
   });
 }
@@ -47,19 +47,24 @@ function wineMapIndexSuccess(wineMapData) {
 
   });
 
-  console.log('(3)the lat is ', winery.maps.lat);
+  console.log('(3)the lat is ', wineMapData.data[0].wineries[0].maps.lat);
+  console.log('(3)the long is ', wineMapData.data[0].wineries[0].maps.long);
 
+  let winery = wineMapData.data[0].wineries[0];
   let theLocation = {
-    lat: winery.maps.lat,
-    lng: winery.maps.long
+    lat: wineMapData.data[0].wineries[0].maps.lat,
+    lng: wineMapData.data[0].wineries[0].maps.long
     };
-  let map = new google.maps.Map(document.getElementById('wine-map'), {
-    zoom: 12,
-    center: theLocation
-  });
-  let marker = new google.maps.Marker({
-    position: theLocation,
-    map: map,
-  });
+    console.log(document.getElementById('wine-map'));
 
+    let map = new google.maps.Map(document.getElementById('wine-map'), {
+      center: {lat: 37.7594696 ,lng: -122.4248613},
+      zoom: 8
+    });
+    let marker = new google.maps.Marker({
+      position: {lat: 37.7594696 ,lng: -122.4248613},
+      map: map
+    });
 }
+
+// AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg
