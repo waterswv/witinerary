@@ -13,7 +13,7 @@ function mapWineryCard(winery) {
             <p>${winery.description}</p>
           </div>
           <div class="card-action add-winery-card">
-            <a id="add-winery" class="btn-floating btn-small fab waves-effect waves-light purple lighten-3"><i class="material-icons">add</i></a>
+            <a class="add-winery btn-floating btn-small fab waves-effect waves-light purple lighten-3"><i class="material-icons">add</i></a>
           </div>
         </div>
       </div> <!-- end of col class for card -->
