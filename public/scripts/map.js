@@ -5,10 +5,13 @@ $(document).ready(function() {
   // Add event listner on Winery Button ... call update method to add winery to wineMap model in DB
 
 
+  let directionsService = new google.maps.DirectionsService();
   let map = new google.maps.Map(document.getElementById('wine-map'), {
     center: {lat: 38.6205463, lng: -122.8997986}, // TODO: update center location to be relative to all wineries. Think about ZOOM as well.
     zoom: 10
   });
+  let directionsDisplay = new google.maps.DirectionsRenderer();
+  directionsDisplay.setMap(map);
 
 // TODO: Determine where to place AJAX calls ... inside or outside of document ready
 
@@ -59,9 +62,10 @@ function mapWineryAddSuccess(wineryData) {
 // Find all wineries that are currently not displayed on a map.
 
 function generateWineriesForMaps() {
-  let allWineriesArr =  $.get('/api/winery');
-  let wineriesinMapArr =  $.get('/api/map');
+   let allWineriesArr =  $.get('/api/winery');
+   let wineriesinMapArr =  $.get('/api/map');
 
+   // Using variables above make multiple ajax calls to use with promises.
    $.when(allWineriesArr, wineriesinMapArr).then(function (wineries, mapWineries) {
      //You have both responses at this point.
      console.log("All Wineries Array: ", wineries[0]);
@@ -76,13 +80,18 @@ function generateWineriesForMaps() {
      });
      console.log("The current wineries not on map: ", wineriesNotOnMap);
 
+     // Take array that has all wineries not on current map and call mapWineryCad Function to
+     // generate a card on the page.
      wineriesNotOnMap.forEach((winery) => {mapWineryCard(winery)})
 
    }).then(function() {
+     // using promises & anonymous function setup jQuery event listeners on every card created on page with .add-winery class
      $('.add-winery').on('click', function(e) {
        e.preventDefault();
        console.log('clicked + winery FAB');
+       // Grabs the winery id from data element to pass through to database to append
        let newWinery_id = $(this).closest('.winery').data('winery-id');
+       // Toggles the display of the selected winery card to off upon clicking add button to map
        $(this).closest('.winery').toggle('slow');
        $.ajax({
          method: "PUT",
@@ -94,12 +103,32 @@ function generateWineriesForMaps() {
    });
 }
 
+$('.add-map-route').on('click', function(e) {
+  e.preventDefault();
+  calcRoute();
+  console.log('Do I work?');
+})
 
 
 
 
+// LEARNING GOOGLE MAPS DIRECTIONS >>>>
 
-
-
-
+function calcRoute() {
+  let winery1 = new google.maps.LatLng(38.6640092, -122.9342897);
+  let winery2 = new google.maps.LatLng(38.5706633, -122.7795547);
+  let request = {
+    origin: winery1,
+    destination: winery2,
+    // Note that Javascript allows us to access the constant
+    // using square brackets and a string value as its
+    // "property."
+    travelMode: "DRIVING"
+  };
+  directionsService.route(request, function(response, status) {
+    if (status == 'OK') {
+      directionsDisplay.setDirections(response);
+    }
+  });
+}
 }); // End of Document.ready() ...
