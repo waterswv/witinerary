@@ -3,7 +3,7 @@
 function mapWineryCard(winery) {
 
   let mapWineryCardHTML = (`
-      <div class="col s12 m6" data-winery-id="${winery._id}">
+      <div class="winery col s12 m6" data-winery-id="${winery._id}">
         <div class="mapwinery card">
           <div class="card-content">
             <div class="chip">
