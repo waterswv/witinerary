@@ -38,13 +38,13 @@ function wineMapIndexSuccess(wineMapData) {
     mapWineryCard(winery);
     let wineryDiv = `[data-winery-id=${winery._id}]`;
     // For each pool, render the events for that pool
-    console.log(wineryDiv);
+    // console.log(wineryDiv);
     });
 }
 
 function mapWineryAddSuccess(wineryData) {
   let winery = wineryData.wineries[wineryData.wineries.length-1];
-  console.log(winery);
+  // console.log(winery);
   renderMapMarker(winery);
 }
 
@@ -63,7 +63,7 @@ function mapWineryAddSuccess(wineryData) {
       lat: wineMapData.data[0].wineries[0].maps.lat,
       lng: wineMapData.data[0].wineries[0].maps.long
     };
-    console.log(document.getElementById('wine-map'));
+    // console.log(document.getElementById('wine-map'));
 
 
     wineMapData.data[0].wineries.forEach(function(winery){
@@ -81,11 +81,30 @@ function mapWineryAddSuccess(wineryData) {
   }
 
 
+// Find all wineries
+
+function generateWineriesForMaps() {
+  let allWineriesArr =  $.get('/api/winery');
+  let wineriesinMapArr =  $.get('/api/map');
+
+   $.when(allWineriesArr, wineriesinMapArr).then(function (wineries, mapWineries) {
+     //You have both responses at this point.
+     console.log("All Wineries Array: ", wineries[0]);
+     console.log("All Mapped Wineries Array: ", mapWineries[0].data[0].wineries);
+
+     wineriesArr = wineries[0];
+     console.log("Is this my all wineries Array... ", wineriesArr);
+     mapWineriesArr = mapWineries[0].data[0].wineries.map((winery) => {return winery._id} );
+
+    let wineriesNotOnMap = wineriesArr.filter(function(winery) {
+       return !mapWineriesArr.includes(winery._id);
+     });
+     console.log("The current wineries not on map: ", wineriesNotOnMap);
+   });
+}
 
 
-
-
-
+generateWineriesForMaps();
 
 
 
