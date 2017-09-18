@@ -6,7 +6,7 @@ wineryList.push({
   name: 'Unti',
   description: 'Dry Creek Winery',
   url: 'https://www.untiwines.com',
-  fullAddress: '1234 Healdsburg Ave Healdsburg, CA',
+  fullAddress: '4202 Dry Creek Rd, Healdsburg, CA 95448',
   contactPhone: '415-987-0987',
   contactEmail: 'unti@untiwines.com',
   hours: '10AM - 5PM Thurs-Sun',
@@ -17,8 +17,8 @@ wineryList.push({
   facebook: 'facebook.com/untiwines',
   wineRegion: 'Dry Creek Valley',
   maps: {
-    lat: 37.7594696,
-    long: -122.4248613
+    lat: 38.6640092,
+    long: -122.9342897
   }
 });
 
@@ -26,7 +26,7 @@ wineryList.push({
   name: 'Roth',
   description: 'Alexander Valley Winery',
   url: 'https://www.rothestatewines.com',
-  fullAddress: '1234 Main Ave Windsor, CA',
+  fullAddress: '10309 Chalk Hill Rd, Healdsburg, CA 95448',
   contactPhone: '415-987-0000',
   contactEmail: 'roth@rothestatewines.com',
   hours: '10AM - 5PM 7 Days a week',
@@ -37,8 +37,8 @@ wineryList.push({
   facebook: 'facebook.com/rothwines',
   wineRegion: 'Alexander Valley',
   maps: {
-    lat: 37.7594696,
-    long: -122.4248613
+    lat: 38.5706633,
+    long: -122.7795547
   }
 });
 
