@@ -14,21 +14,8 @@ $(document).ready(function() {
   directionsDisplay.setMap(map);
 
 // TODO: Determine where to place AJAX calls ... inside or outside of document ready
+let urlData = getUrlVars()
 
-function getUrlVars()
-{
-    var vars = [], hash;
-    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-    for(var i = 0; i < hashes.length; i++)
-    {
-        hash = hashes[i].split('=');
-        vars.push(hash[0]);
-        vars[hash[0]] = hash[1];
-    }
-    console.log('the url params are', vars);
-    return vars;
-}
-getUrlVars();
 
 // Display all current winery cards available to be added to a given WineMap
 $.ajax({
@@ -42,14 +29,19 @@ $.ajax({
 function wineMapIndexSuccess(wineMapData) {
   // TODO: THIS MUST BE REFACTORED TO PULL DATA BASED ON WINEMAP ID, NOT [INDEX 0]...
   console.log('The WineMapData object ', wineMapData);
+  console.log(urlData[3]);
+
+  let currentWineMap = wineMapData.data.filter((wineMap)=>{return (wineMap._id === urlData[3])});
+  console.log('Is this my wineMap ', currentWineMap);
   // Render winery data to page
-  wineMapData.data[0].wineries.forEach(function(winery){
+  currentWineMap[0].wineries.forEach(function(winery){
     renderMapMarker(winery);
     // For each pool, render the events for that pool
     let wineryDiv = `[data-winery-id=${winery._id}]`;
     // console.log(wineryDiv);
     });
     generateWineriesForMaps();
+
 }
 
 function mapWineryAddSuccess(wineryData) {
@@ -127,7 +119,21 @@ function generateWineriesForMaps() {
    });
 }
 
-
+// GRAB ID FROM URL to Render Pages ...
+function getUrlVars()
+{
+    var urlSlugs = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('/') + 1).split('/');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        urlSlugs.push(hash[0]);
+        urlSlugs[hash[0]] = hash[1];
+    }
+    // WINEMAP ID IS STORED IN INDEX 3 !!!!!
+    console.log('the url params are', urlSlugs);
+    return urlSlugs;
+}
 
 
 
