@@ -47,7 +47,7 @@ function wineMapIndexSuccess(wineMapData) {
 function mapWineryAddSuccess(wineryData) {
   // grabbing winery added to map and using it to generate a new marker
   let winery = wineryData.wineries[wineryData.wineries.length-1];
-  // console.log(winery);
+  console.log(winery);
   renderMapMarker(winery);
 }
 
@@ -73,22 +73,22 @@ function mapWineryAddSuccess(wineryData) {
 
 function generateWineriesForMaps() {
    let allWineriesArr =  $.get('/api/winery');
-   let wineriesinMapArr =  $.get('/api/map');
+   let wineriesinMapArr =  $.get(`/api/map/${urlData[3]}`);
 
    // Using variables above make multiple ajax calls to use with promises.
    $.when(allWineriesArr, wineriesinMapArr).then(function (wineries, mapWineries) {
      //You have both responses at this point.
      console.log("All Wineries Array: ", wineries[0]);
-     console.log("All Mapped Wineries Array: ", mapWineries[0].data[0].wineries);
+     console.log("All Mapped Wineries Array: ", mapWineries[0].wineries);
 
     //  send waypoints object to calcRoute function for generating driving view...
-     let waypointsData = mapWineries[0].data[0].wineries.map((winery) => {return {location: winery.fullAddress}})
+     let waypointsData = mapWineries[0].wineries.map((winery) => {return {location: winery.fullAddress}})
      calcRoute(waypointsData); // TODO: figure out how to better arrange waypoints ...
      console.log(waypointsData);
      wineriesArr = wineries[0];
 
      console.log("Is this my all wineries Array... ", wineriesArr);
-     mapWineriesArr = mapWineries[0].data[0].wineries.map((winery) => {return winery._id} );
+     mapWineriesArr = mapWineries[0].wineries.map((winery) => {return winery._id} );
 
     let wineriesNotOnMap = wineriesArr.filter(function(winery) {
        // .includes function returns a boolean value depending on if an element is contained in an array
@@ -111,7 +111,7 @@ function generateWineriesForMaps() {
        $(this).closest('.winery').toggle('slow');
        $.ajax({
          method: "PUT",
-         url: `/api/map/59bd513b13d94290630fea00/winery/${newWinery_id}`,
+         url: `/api/map/${urlData[3]}/winery/${newWinery_id}`,
          data: {_id: newWinery_id },
          success: mapWineryAddSuccess
        });
