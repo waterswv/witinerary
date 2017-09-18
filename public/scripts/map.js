@@ -15,6 +15,21 @@ $(document).ready(function() {
 
 // TODO: Determine where to place AJAX calls ... inside or outside of document ready
 
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    console.log('the url params are', vars);
+    return vars;
+}
+getUrlVars();
+
 // Display all current winery cards available to be added to a given WineMap
 $.ajax({
   method: 'GET',

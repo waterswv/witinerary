@@ -41,6 +41,13 @@ app.get('/new-map', function(req, res){
   console.log(__dirname);
 });
 
+app.get('/new-map/:map_id', function(req, res){
+  res.sendFile('views/new-map.html', {
+    root: __dirname
+  });
+  console.log(__dirname);
+});
+
 
 // API Controller Routes
 app.get('/api', controllers.api.index);
