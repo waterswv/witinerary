@@ -25,7 +25,8 @@ $.ajax({
 
 
 function wineMapIndexSuccess(wineMapData) {
-
+  // TODO: THIS MUST BE REFACTORED TO PULL DATA BASED ON WINEMAP ID, NOT [INDEX 0]...
+  console.log('The WineMapData object ', wineMapData);
   // Render winery data to page
   wineMapData.data[0].wineries.forEach(function(winery){
     renderMapMarker(winery);
@@ -75,7 +76,7 @@ function generateWineriesForMaps() {
 
     //  send waypoints object to calcRoute function for generating driving view...
      let waypointsData = mapWineries[0].data[0].wineries.map((winery) => {return {location: winery.fullAddress}})
-     calcRoute(waypointsData); // TODO: figure out how to better arrange waypoints ... 
+     calcRoute(waypointsData); // TODO: figure out how to better arrange waypoints ...
      console.log(waypointsData);
      wineriesArr = wineries[0];
 

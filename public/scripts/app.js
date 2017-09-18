@@ -3,15 +3,7 @@ $(document).ready(function() {
     renderNav();
     renderFooter();
     $('select').material_select();
-    $('.datepicker').pickadate({
-      selectMonths: true, // Creates a dropdown to control month
-      selectYears: 15, // Creates a dropdown of 15 years to control year,
-      today: 'Today',
-      clear: 'Clear',
-      close: 'Ok',
-      closeOnSelect: true, // Close upon selecting a date,
-      onClose: function(){$('.datepicker').blur();}
-    });
+
     // Generate winery cards on homepage ...
     $.ajax({
       method: 'GET',
@@ -19,7 +11,19 @@ $(document).ready(function() {
       success: wineryIndexSuccess,
     });
 
+    $('form').on('submit', function(e) {
+      e.preventDefault();
+      let data = $(this).serialize();
+      $.ajax({
+        method: 'POST',
+        url: '/api/map',
+        data: data,
+        success: handleNewMapSuccess,
+        error: handleAjaxError
+      });
+    })
 
+}); // Close Document.ready function
 
 //  AJAX CALL SUCCESS FUNCTIONS
   function wineryIndexSuccess(wineries) {
@@ -28,8 +32,10 @@ $(document).ready(function() {
     });
   }
 
+  function handleNewMapSuccess(newMapData) {
+    console.log(newMapData);
+  }
 
-
-
-
-}); // Close Document.ready function
+  function handleAjaxError(err) {
+      console.log('There was an error', err);
+  }
