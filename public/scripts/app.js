@@ -9,7 +9,8 @@ $(document).ready(function() {
       today: 'Today',
       clear: 'Clear',
       close: 'Ok',
-      closeOnSelect: false // Close upon selecting a date,
+      closeOnSelect: true, // Close upon selecting a date,
+      onClose: function(){$('.datepicker').blur();}
     });
     // Generate winery cards on homepage ...
     $.ajax({

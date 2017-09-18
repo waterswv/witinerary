@@ -3,7 +3,9 @@
 ul.dropdown-content.select-dropdown li:not(.disabled) span {
     color: #BB8AAC; /* no need for !important :) */
 }
-
+div.input-field.input #title{
+  color: #BB8AAC;
+}
 nav {
   color: black;
 }
