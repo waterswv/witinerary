@@ -12,15 +12,15 @@
 * [Mongoose](http://mongoosejs.com/)
 * [MongoDB](http://mongodb.github.io/node-mongodb-native/2.0/)
 
-### Overview
+## Overview
 
-#### Wine-Tripping is built with javascript and materializecss on the front end and employs express on top of node.js with a MongoDB/Mongoose database. The solution helps users search a directory of wineries located in the different wine regions of Northern California. Upon finding suitable destinations, a user will be able to build an itinerary list of addresses. Based on the built list the site then hits the Google Maps Directions API to build a mapped route of the destinations. Future enhancements will provide users with an optimized route of turn-by-turn directions of their route. This will help them in planning departure & arrival times for their entire trip.
+### Wine-Tripping is built with javascript and materializecss on the front end and employs express on top of node.js with a MongoDB/Mongoose database. The solution helps users search a directory of wineries located in the different wine regions of Northern California. Upon finding suitable destinations, a user will be able to build an itinerary list of addresses. Based on the built list the site then hits the Google Maps Directions API to build a mapped route of the destinations. Future enhancements will provide users with an optimized route of turn-by-turn directions of their route. This will help them in planning departure & arrival times for their entire trip.
 
-#### Interesting Code [
+### Interesting Code [
 
 > From my perspective :)
 
-1. ** generateWineriesForMaps  function located in public/scripts/map.js **
+### ** generateWineriesForMaps  function located in public/scripts/map.js **
 
 ##### The Generate Wineries for Maps is doing several things:
   1. Uses AJAX promises to make multiple get method calls and then executes multiple statement with both results.
@@ -29,6 +29,7 @@
   4. Leveraging .next() waits until all functions have been executed to add event listeners to newly rendered winery cards.
 
   **Code Snippet Examples for generateWineriesForMaps:**
+
   1.
 ```
   function generateWineriesForMaps() {
@@ -89,11 +90,11 @@
        });
      });
 ```
-2. AJAX Calls located in public/scripts/app.js
+### AJAX Calls located in public/scripts/app.js
 
 #### Here I'm making multiple ajax calls as well as adding event listeners:
 
-* Allows you to generate a new wineMap in 2 different ways & create a dynamic page:
+1. Allows you to generate a new wineMap in 2 different ways & create a dynamic page:
 - Form Submission generating a blank wineMap
 - Button click, which also adds your 1st winery to your wineMap
 
