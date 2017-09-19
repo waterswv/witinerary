@@ -33,6 +33,8 @@ function wineMapIndexSuccess(wineMapData) {
 
   let currentWineMap = wineMapData.data.filter((wineMap)=>{return (wineMap._id === urlData[3])});
   console.log('Is this my wineMap ', currentWineMap);
+  //render title on WineMap
+  $('.winemap-title').prepend(`<span>Your Trip: ${currentWineMap[0].title}</span>`)
   // Render winery data to page
   currentWineMap[0].wineries.forEach(function(winery){
     renderMapMarker(winery);
@@ -154,6 +156,7 @@ function calcRoute(waypointsData) {
   directionsService.route(request, function(response, status) {
     if (status == 'OK') {
       directionsDisplay.setDirections(response);
+      console.log('The Map Response object: ', response);
     }
   });
 }

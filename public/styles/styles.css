@@ -27,8 +27,20 @@ padding: 10px;
 div.chip{
   border-left: 50px;
 }
+.winery-header{
+  text-align: center;
+  font-size: 20px;
+  font: bold;
+  margin-top: 10px;
+}
 
-.add-winery-card{
+.winemap-title{
+  float: right;
+  font-size: 20px;
+  font: bold;
+  margin-top: 10px;
+}
+div.add-winery-card{
   text-align: center;
 }
 #add-winery{
