@@ -30,7 +30,8 @@
 
   **Code Snippet Examples for generateWineriesForMaps:**
   1.
-  ```function generateWineriesForMaps() {
+```
+  function generateWineriesForMaps() {
      let allWineriesArr =  $.get('/api/winery');
      let wineriesinMapArr =  $.get(`/api/map/${urlData[3]}`);
 
@@ -39,18 +40,21 @@
        //You have both responses at this point.
        console.log("All Wineries Array: ", wineries[0]);
        console.log("All Mapped Wineries Array: ", mapWineries[0].wineries);
-       ```
+```
 
   2.
 
-  ```   //  send waypoints object to calcRoute function for generating driving view...
+
+```   
+       //  send waypoints object to calcRoute function for generating driving view...
        let waypointsData = mapWineries[0].wineries.map((winery) => {return {location: winery.fullAddress}})
        calcRoute(waypointsData); // Call Google Maps CalcRoute function to build directions display
        console.log(waypointsData);
-       ```
+```
 
   3.
-  ```   wineriesArr = wineries[0];
+```   
+       wineriesArr = wineries[0];
        console.log("Is this my all wineries Array... ", wineriesArr);
        mapWineriesArr = mapWineries[0].wineries.map((winery) => {return winery._id} );
 
@@ -64,9 +68,10 @@
        // generate a card on the page.
        wineriesNotOnMap.forEach((winery) => {mapWineryCard(winery)})
        })
-       ```
+```
   4.
-  ``` .then(function() {
+```
+    .then(function() {
        // using promises & anonymous function setup jQuery event listeners on every card created on page with .add-winery class
        $('.add-winery').on('click', function(e) {
          e.preventDefault();
@@ -83,7 +88,7 @@
          });
        });
      });
-     ```
+```
 2. AJAX Calls located in public/scripts/app.js
 
 #### Here I'm making multiple ajax calls as well as adding event listeners:
