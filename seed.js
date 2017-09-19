@@ -83,6 +83,48 @@ wineryList.push({
   ]
 });
 
+wineryList.push({
+  name: "Comstock Wines ",
+  description: "We consider your experience to be our final step",
+  url: "www.comstockwines.com",
+  fullAddress: "1290 Dry Creek Road Healdsburg CA 95448",
+  contactPhone: "707-723-3011",
+  contactEmail: "info@comstockwines.com",
+  hours: "Fri-Mon 10:30AM - 4:30PM",
+  tastingByAppt: false,
+  twitter: "",
+  facebook: "",
+  wineRegion: "",
+  maps: {
+  lat: 38.6326374,
+  long: -122.8973365
+  },
+  varietals: [
+  "Chardonnay, Pinot Noir, Merlot, Zinfandel"
+  ]
+});
+
+wineryList.push({
+  name: "Fog Crest Vineyards",
+  description: "Linger awhile on sunny hilltop patio and enjoy panoramic views & current releases",
+  url: "www.fogcrestvineyards",
+  fullAddress: "7606 Occidental Rd Sebastopol, CA 95472",
+  contactPhone: "707-829-2006",
+  contactEmail: "info@fogcrestvineyards.com",
+  hours: "Daily 11AM - 5PM",
+  tastingByAppt: false,
+  twitter: "",
+  facebook: "",
+  wineRegion: "",
+  maps: {
+  lat: 38.4286098,
+  long: -122.8444916
+  },
+  varietals: [
+  "Chardonnay, Pinot Noir, Rose'"
+  ]
+});
+
 wineMapList.push({
   title: 'Bethany & Bryan in Healdsburg',
   createdDate: '9/18/17',

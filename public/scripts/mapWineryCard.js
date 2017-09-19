@@ -7,7 +7,7 @@ function mapWineryCard(winery) {
         <div class="mapwinery card">
           <div class="card-content">
             <div class="chip">
-              <img src="https://pbs.twimg.com/profile_images/413706032871788544/IVbxnu7V_400x400.jpeg" alt="Contact Person">
+              <img src="https://doubleavineyards.com/media/catalog/product/cache/1/image/600x600/9df78eab33525d08d6e5fb8d27136e95/d/o/double-a-vineyards-foch2-grapevines.jpg" alt="Contact Person">
               ${winery.name}
             </div>
             <p>${winery.description}</p>
