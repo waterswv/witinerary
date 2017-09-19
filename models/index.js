@@ -5,4 +5,4 @@ let mongoose = require('mongoose');
 mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/wineapp_test");
 
 module.exports.Winery = require('./winery');
-module.exports.WineMap = require('./wineMap');
+module.exports.WineMap = require('./winemap');
