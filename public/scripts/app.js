@@ -29,9 +29,10 @@ $(document).ready(function() {
       }); // Closes on'Click' function.
     });
 
-    $('form').on('submit', function(e) {
+    $('#home-form').on('submit', function(e) {
       e.preventDefault();
-      let data = $(this).serialize();
+      let data = $(this).serialize(); // Remember to give form fields name='value' key:value pairs
+      console.log('The Form Data: ', data);
       $.ajax({
         method: 'POST',
         url: '/api/map',

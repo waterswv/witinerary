@@ -14,13 +14,15 @@
 
 ## Overview
 
-### Wine-Tripping is built with javascript and materializecss on the front end and employs express on top of node.js with a MongoDB/Mongoose database. The solution helps users search a directory of wineries located in the different wine regions of Northern California. Upon finding suitable destinations, a user will be able to build an itinerary list of addresses. Based on the built list the site then hits the Google Maps Directions API to build a mapped route of the destinations. Future enhancements will provide users with an optimized route of turn-by-turn directions of their route. This will help them in planning departure & arrival times for their entire trip.
+### Wine-Tripping is built with javascript and materializecss on the front end and employs express on top of node.js with a MongoDB/Mongoose database. The solution helps users search a directory of wineries located in the different wine regions of Northern California. Upon finding suitable destinations, a user will be able to build an itinerary list of addresses. Based on the built list the site then hits the Google Maps Directions API to build a mapped route of the destinations.
 
-### Interesting Code [
+#### Future enhancements will provide users with an optimized route of turn-by-turn directions of their route. This will help them in planning departure & arrival times for their entire trip.
+
+### Interesting Code:
 
 > From my perspective :)
 
-### ** generateWineriesForMaps  function located in public/scripts/map.js **
+### **generateWineriesForMaps function located in public/scripts/map.js**
 
 ##### The Generate Wineries for Maps is doing several things:
   1. Uses AJAX promises to make multiple get method calls and then executes multiple statement with both results.
@@ -100,7 +102,7 @@
 
 > Specifically what I like about this section of code is that I chain 2 separate
 > ajax calls together so I can first create a wineMap & then add a winery to that
-< wineMap that has been newly created. Then I execute a redirect to the new page
+> wineMap that has been newly created. Then I execute a redirect to the new page
 
   ``` // Generate winery cards on homepage ...
   $.ajax({
