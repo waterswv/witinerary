@@ -14,6 +14,8 @@ $(document).ready(function() {
   directionsDisplay.setMap(map);
 
 // TODO: Determine where to place AJAX calls ... inside or outside of document ready
+let urlData = getUrlVars()
+
 
 // Display all current winery cards available to be added to a given WineMap
 $.ajax({
@@ -25,21 +27,29 @@ $.ajax({
 
 
 function wineMapIndexSuccess(wineMapData) {
+  // TODO: THIS MUST BE REFACTORED TO PULL DATA BASED ON WINEMAP ID, NOT [INDEX 0]...
+  console.log('The WineMapData object ', wineMapData);
+  console.log(urlData[3]);
 
+  let currentWineMap = wineMapData.data.filter((wineMap)=>{return (wineMap._id === urlData[3])});
+  console.log('Is this my wineMap ', currentWineMap);
+  //render title on WineMap
+  $('.winemap-title').prepend(`<span>Your Trip: ${currentWineMap[0].title}</span>`)
   // Render winery data to page
-  wineMapData.data[0].wineries.forEach(function(winery){
+  currentWineMap[0].wineries.forEach(function(winery){
     renderMapMarker(winery);
     // For each pool, render the events for that pool
     let wineryDiv = `[data-winery-id=${winery._id}]`;
     // console.log(wineryDiv);
     });
     generateWineriesForMaps();
+
 }
 
 function mapWineryAddSuccess(wineryData) {
   // grabbing winery added to map and using it to generate a new marker
   let winery = wineryData.wineries[wineryData.wineries.length-1];
-  // console.log(winery);
+  console.log(winery);
   renderMapMarker(winery);
 }
 
@@ -65,22 +75,22 @@ function mapWineryAddSuccess(wineryData) {
 
 function generateWineriesForMaps() {
    let allWineriesArr =  $.get('/api/winery');
-   let wineriesinMapArr =  $.get('/api/map');
+   let wineriesinMapArr =  $.get(`/api/map/${urlData[3]}`);
 
    // Using variables above make multiple ajax calls to use with promises.
    $.when(allWineriesArr, wineriesinMapArr).then(function (wineries, mapWineries) {
      //You have both responses at this point.
      console.log("All Wineries Array: ", wineries[0]);
-     console.log("All Mapped Wineries Array: ", mapWineries[0].data[0].wineries);
+     console.log("All Mapped Wineries Array: ", mapWineries[0].wineries);
 
     //  send waypoints object to calcRoute function for generating driving view...
-     let waypointsData = mapWineries[0].data[0].wineries.map((winery) => {return {location: winery.fullAddress}})
-     calcRoute(waypointsData); // TODO: figure out how to better arrange waypoints ... 
+     let waypointsData = mapWineries[0].wineries.map((winery) => {return {location: winery.fullAddress}})
+     calcRoute(waypointsData); // TODO: figure out how to better arrange waypoints ...
      console.log(waypointsData);
      wineriesArr = wineries[0];
 
      console.log("Is this my all wineries Array... ", wineriesArr);
-     mapWineriesArr = mapWineries[0].data[0].wineries.map((winery) => {return winery._id} );
+     mapWineriesArr = mapWineries[0].wineries.map((winery) => {return winery._id} );
 
     let wineriesNotOnMap = wineriesArr.filter(function(winery) {
        // .includes function returns a boolean value depending on if an element is contained in an array
@@ -103,7 +113,7 @@ function generateWineriesForMaps() {
        $(this).closest('.winery').toggle('slow');
        $.ajax({
          method: "PUT",
-         url: `/api/map/59bd513b13d94290630fea00/winery/${newWinery_id}`,
+         url: `/api/map/${urlData[3]}/winery/${newWinery_id}`,
          data: {_id: newWinery_id },
          success: mapWineryAddSuccess
        });
@@ -111,7 +121,21 @@ function generateWineriesForMaps() {
    });
 }
 
-
+// GRAB ID FROM URL to Render Pages ...
+function getUrlVars()
+{
+    var urlSlugs = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('/') + 1).split('/');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        urlSlugs.push(hash[0]);
+        urlSlugs[hash[0]] = hash[1];
+    }
+    // WINEMAP ID IS STORED IN INDEX 3 !!!!!
+    console.log('the url params are', urlSlugs);
+    return urlSlugs;
+}
 
 
 
@@ -132,6 +156,7 @@ function calcRoute(waypointsData) {
   directionsService.route(request, function(response, status) {
     if (status == 'OK') {
       directionsDisplay.setDirections(response);
+      console.log('The Map Response object: ', response);
     }
   });
 }

@@ -10,7 +10,8 @@ let WineMapSchema = new Schema({
   startTime: String,
   endTime: String,
   mapURL: String,
-  wineries: [Winery.schema]
+  wineries: [Winery.schema],
+  wineRegion: String
 
 })
 

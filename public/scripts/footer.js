@@ -5,24 +5,24 @@ let footerHTML = (
 `<div class="container">
             <div class="row">
               <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                <h5 class="white-text">Witinerary Inc.</h5>
+                <p class="grey-text text-lighten-4">Made with <i class="tiny material-icons">favorite</i> in Northern California.</p>
               </div>
               <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
+                <h5 class="white-text">About Us</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Our History</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Careers</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">All Wineries</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Contact Us</a></li>
                 </ul>
               </div>
             </div>
           </div>
           <div class="footer-copyright">
             <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            © 2017 Copyright Witinerary Labs
+            <a class="grey-text text-lighten-4 right" href="#!">Shhh :)</a>
             </div>
           </div>`
 );
