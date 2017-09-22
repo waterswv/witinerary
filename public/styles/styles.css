@@ -56,8 +56,8 @@ div.add-winery-card{
   width: 100%;
 }
 #wine-map{
-  height: 400px;
-  width: 400px;
+  height: 300px;
+  width: 300px;
   position: relative;
   display: block;
   margin-left: auto;

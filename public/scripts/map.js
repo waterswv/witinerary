@@ -12,6 +12,7 @@ $(document).ready(function() {
   });
   let directionsDisplay = new google.maps.DirectionsRenderer();
   directionsDisplay.setMap(map);
+  directionsDisplay.setPanel(document.getElementById('wine-map-directions'));
 
 // TODO: Determine where to place AJAX calls ... inside or outside of document ready
 let urlData = getUrlVars()
@@ -140,6 +141,7 @@ function getUrlVars()
 
 
 // LEARNING GOOGLE MAPS DIRECTIONS >>>>
+// running calcRoute in generateWineriesForMaps function currently ... TODO: refactor
 
 function calcRoute(waypointsData) {
   // let winery1 = new google.maps.LatLng(38.6640092, -122.9342897);
