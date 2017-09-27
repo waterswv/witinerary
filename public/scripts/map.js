@@ -101,7 +101,9 @@ function generateWineriesForMaps() {
 
      // Take array that has all wineries not on current map and call mapWineryCad Function to
      // generate a card on the page.
-     wineriesNotOnMap.forEach((winery) => {mapWineryCard(winery)})
+     wineriesNotOnMap.forEach((winery) => {mapWineryCard(winery)});
+     // Taking the existing wineries in the Map and creating cards for them on the Map page. 
+     mapWineries[0].wineries.forEach((winery) => {addedWineryCard(winery)});
 
    }).then(function() {
      // using promises & anonymous function setup jQuery event listeners on every card created on page with .add-winery class
