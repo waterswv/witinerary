@@ -2,6 +2,9 @@
 
 ## An App to help you make the most of your time in Wine Country
 
+### You can view a heroku hosted version [HERE](https://intense-taiga-12690.herokuapp.com/)
+###### Please note that this is a free version of Heroku so it take a few seconds to initially load. 
+
 ### Technology Stack
 * JAVASCRIPT
 * [MaterializeCSS](http://materializecss.com/)
