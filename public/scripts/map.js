@@ -43,7 +43,7 @@ function wineMapIndexSuccess(wineMapData) {
     let wineryDiv = `[data-winery-id=${winery._id}]`;
     // console.log(wineryDiv);
     });
-    generateWineriesForMaps();
+    generateWineriesForMaps(currentWineMap);
 
 }
 
@@ -74,19 +74,19 @@ function mapWineryAddSuccess(wineryData) {
 
 // Find all wineries that are currently not displayed on a map.
 
-function generateWineriesForMaps() {
+function generateWineriesForMaps(theWineMapArr) {
    let allWineriesArr =  $.get('/api/winery');
    let wineriesinMapArr =  $.get(`/api/map/${urlData[3]}`);
 
    // Using variables above make multiple ajax calls to use with promises.
-   $.when(allWineriesArr, wineriesinMapArr).then(function (wineries, mapWineries) {
+   $.when(allWineriesArr, wineriesinMapArr,theWineMapArr).then(function (wineries, mapWineries,theWineMapArr) {
      //You have both responses at this point.
      console.log("All Wineries Array: ", wineries[0]);
      console.log("All Mapped Wineries Array: ", mapWineries[0].wineries);
 
     //  send waypoints object to calcRoute function for generating driving view...
      let waypointsData = mapWineries[0].wineries.map((winery) => {return {location: winery.fullAddress}})
-     calcRoute(waypointsData); // TODO: figure out how to better arrange waypoints ...
+     calcRoute(waypointsData, theWineMapArr); // TODO: figure out how to better arrange waypoints ...
      console.log(waypointsData);
      wineriesArr = wineries[0];
 
@@ -102,7 +102,7 @@ function generateWineriesForMaps() {
      // Take array that has all wineries not on current map and call mapWineryCad Function to
      // generate a card on the page.
      wineriesNotOnMap.forEach((winery) => {mapWineryCard(winery)});
-     // Taking the existing wineries in the Map and creating cards for them on the Map page. 
+     // Taking the existing wineries in the Map and creating cards for them on the Map page.
      mapWineries[0].wineries.forEach((winery) => {addedWineryCard(winery)});
 
    }).then(function() {
@@ -145,12 +145,12 @@ function getUrlVars()
 // LEARNING GOOGLE MAPS DIRECTIONS >>>>
 // running calcRoute in generateWineriesForMaps function currently ... TODO: refactor
 
-function calcRoute(waypointsData) {
+function calcRoute(waypointsData, theWineMapArr) {
   // let winery1 = new google.maps.LatLng(38.6640092, -122.9342897);
   // let winery2 = new google.maps.LatLng(38.5706633, -122.7795547);
   let request = {
-    origin: {lat: 38.6205463, lng: -122.8997986},
-    destination: {lat: 38.6205463, lng: -122.8997986},
+    origin: {lat: theWineMapArr[0].startLocation.lat, lng: theWineMapArr[0].startLocation.long},
+    destination: {lat: theWineMapArr[0].endLocation.lat, lng: theWineMapArr[0].endLocation.long},
     waypoints: waypointsData,
     // Note that Javascript allows us to access the constant
     // using square brackets and a string value as its
