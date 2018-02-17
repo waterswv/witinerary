@@ -19,8 +19,10 @@
   "homepage": "https://github.com/waterswv/witinerary#readme",
   "dependencies": {
     "body-parser": "^1.18.1",
-    "express": "^4.15.4",
+    "express": "^4.16.2",
+    "express-graphql": "^0.6.11",
     "googlemaps": "^1.12.0",
+    "graphql": "^0.13.1",
     "mongoose": "^4.11.11"
   }
 }
