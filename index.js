@@ -25,6 +25,18 @@ app.use(express.static(__dirname + '/public'));
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Prevent CORS errors
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
+
+  //Remove caching
+  res.setHeader('Cache-Control', 'no-cache');
+  next();
+});
+
 // RUNNING GRAPHQL ********************************************************
       let graphqlHTTP = require('express-graphql');
       let { buildSchema } = require('graphql');
@@ -99,6 +111,7 @@ app.delete('/api/winery/:id', controllers.winery.destroy);
 
 // WineMap Controller Routes
 app.get('/api/map', controllers.wineMap.index);
+app.get('/api/map/google', controllers.wineMap.map)
 app.post('/api/map', controllers.wineMap.create);
 app.get('/api/map/:map_id', controllers.wineMap.show);
 app.delete('/api/map/:id', controllers.wineMap.destroy);
@@ -110,6 +123,6 @@ app.delete('/api/map/:map_id/winery/:winery_id', controllers.wineMap.destroyWine
  * SERVER *
  **********/
 
-app.listen(process.env.PORT || 3000, function() {
-  console.log("Express Server is up and running on http://localhost:3000/");
+app.listen(process.env.PORT || 8000, function() {
+  console.log("Express Server is up and running on http://localhost:8000/");
 });
