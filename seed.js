@@ -131,7 +131,15 @@ wineMapList.push({
   scheduleDate: '10/21/17',
   startTime: 'Noon',
   endTime: '4:00pm',
-  wineRegion: 'Dry Creek'
+  wineRegion: 'Dry Creek',
+  startLocation: {
+  lat: 38.610265,
+  long: -122.8720387
+  },
+  endLocation: {
+    lat: 37.7851801,
+    long: -122.4379697
+  }
 });
 
 wineMapList.push({
@@ -140,7 +148,15 @@ wineMapList.push({
   scheduleDate: '11/2/17',
   startTime: '10:00AM',
   endTime: '4:00pm',
-  wineRegion: 'Alexander Valley'
+  wineRegion: 'Alexander Valley',
+  startLocation: {
+  lat: 38.610265,
+  long: -122.8720387
+  },
+  endLocation: {
+    lat: 37.7851801,
+    long: -122.4379697
+  }
 });
 // wineryList.forEach(function(winery){
 //

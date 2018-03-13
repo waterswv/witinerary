@@ -25,6 +25,50 @@ app.use(express.static(__dirname + '/public'));
 // body parser config to accept our datatypes
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Prevent CORS errors
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
+
+  //Remove caching
+  res.setHeader('Cache-Control', 'no-cache');
+  next();
+});
+
+// RUNNING GRAPHQL ********************************************************
+      let graphqlHTTP = require('express-graphql');
+      let { buildSchema } = require('graphql');
+
+      // Construct a schema, using GraphQL schema language
+      let schema = buildSchema(`
+        type Query {
+          rollDice(numDice: Int!, numSides: Int): [Int]
+        }
+      `);
+
+      // The root provides a resolver function for each API endpoint
+      let root = {
+        rollDice: function ({numDice, numSides}) {
+          var output = [];
+          for (var i = 0; i < numDice; i++) {
+            output.push(1 + Math.floor(Math.random() * (numSides || 6)));
+          }
+          return output;
+        }
+      };
+
+      let graphApp = express();
+      graphApp.use('/graphql', graphqlHTTP({
+        schema: schema,
+        rootValue: root,
+        graphiql: true,
+      }));
+      graphApp.listen(4000);
+      console.log('Running a GraphQL API server at localhost:4000/graphql');
+// END GRAPHQL ********************************************************
+
 //root route setup
 
 app.get('/', function(req, res){
@@ -36,6 +80,13 @@ app.get('/', function(req, res){
 
 app.get('/new-map', function(req, res){
   res.sendFile('views/new-map.html', {
+    root: __dirname
+  });
+  console.log(__dirname);
+});
+
+app.get('/wine-map', function(req, res){
+  res.sendFile('views/wine-map.html', {
     root: __dirname
   });
   console.log(__dirname);
@@ -60,6 +111,7 @@ app.delete('/api/winery/:id', controllers.winery.destroy);
 
 // WineMap Controller Routes
 app.get('/api/map', controllers.wineMap.index);
+app.get('/api/map/google', controllers.wineMap.map)
 app.post('/api/map', controllers.wineMap.create);
 app.get('/api/map/:map_id', controllers.wineMap.show);
 app.delete('/api/map/:id', controllers.wineMap.destroy);
@@ -71,6 +123,6 @@ app.delete('/api/map/:map_id/winery/:winery_id', controllers.wineMap.destroyWine
  * SERVER *
  **********/
 
-app.listen(process.env.PORT || 3000, function() {
-  console.log("Express Server is up and running on http://localhost:3000/");
+app.listen(process.env.PORT || 8000, function() {
+  console.log("Express Server is up and running on http://localhost:8000/");
 });

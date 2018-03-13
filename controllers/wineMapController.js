@@ -1,17 +1,17 @@
 // Includes all CRUD Functions for WineMap Schema
 
 const db = require('../models');
-// var GoogleMapsAPI = require('googlemaps');
-//
-// // importing google maps:
-// var publicConfig = {
-//   key: 'AIzaSyBHLett8djBo62dDXj0EjCimF8Rd6E8cxg',
-//   stagger_time:       1000, // for elevationPath
-//   encode_polylines:   false,
-//   secure:             true, // use https
-//   //proxy:              'http://127.0.0.1:9999' // optional, set a proxy for HTTP requests
-// };
-// var gmAPI = new GoogleMapsAPI(publicConfig);
+var GoogleMapsAPI = require('googlemaps');
+
+// importing google maps:
+var publicConfig = {
+  key: 'AIzaSyDV5HMbW_2loRPhf5xa0IzXP5SfOP1TF-Q',
+  stagger_time:       1000, // for elevationPath
+  encode_polylines:   false,
+  secure:             true, // use https
+  //proxy:              'http://127.0.0.1:9999' // optional, set a proxy for HTTP requests
+};
+var gmAPI = new GoogleMapsAPI(publicConfig);
 
 function index(req, res) {
   db.WineMap.find({}, function(err, wineMaps) {
@@ -22,6 +22,18 @@ function index(req, res) {
   });
 }
 
+function map(req, res) {
+  let params = {
+          center: '2000 Post St San Francisco CA 94115',
+          zoom: 8,
+          size: '250x250',
+          maptype: 'roadmap'}
+  let map = gmAPI.staticMap(params);
+
+
+  res.json(map);
+
+}
 function create(req, res) {
   db.WineMap.create(req.body, function(err, wineMap) {
     if (err) {
@@ -107,6 +119,7 @@ function destroyWinery(req, res) {
 
 module.exports = {
   index: index,
+  map: map,
   create: create,
   show: show,
   destroy: destroy,

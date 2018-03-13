@@ -17,13 +17,7 @@ padding: 10px;
   margin-top: 75px;
 }
 
-.hero-image{
-  background-image: url('images/landscape-nature-grass-marsh-light-sun-535861-pxhere.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  height: 50%;
-}
+
 div.chip{
   border-left: 50px;
 }
@@ -80,7 +74,14 @@ div.add-winery-card{
 }
 
   /* // TODO: SETUP @MEDIA SIZING FOR SMALLER WINDOWS TO MAKE MAP RESPONSIVE*/
-
+  .hero-image{
+    background-image: url('images/landscape-nature-grass-marsh-light-sun-535861-pxhere.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 50%;
+  }
+  
 .home-hero{
   color: white;
   /*font: bold;*/
